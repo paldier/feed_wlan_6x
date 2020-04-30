@@ -12,12 +12,12 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-hostap branch: iwlwav_intel_ip_ax
 PKG_NAME:=iwlwav-hostap-uci
-PKG_REV:=7f4f3edc10f0e97a73b8c94b1b39e973d03e2cbe
+PKG_REV:=b652afdac2de8628eab6821361d63a8bb149721a
 PKG_VERSION:=2.8
 PKG_RELEASE:=$(PKG_REV)
 
 PKG_BASE_NAME:=$(PKG_NAME)
-PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
 PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/iwlwav-hostap.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)

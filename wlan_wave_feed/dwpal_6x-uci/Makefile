@@ -7,11 +7,11 @@ include $(TOPDIR)/rules.mk
 
 #### Package Info ############################### 
 PKG_NAME:=dwpal_6x-uci
-PKG_REV:=b2a452578cf9bea704611eaf2991097c5eeec596
+PKG_REV:=89be0d086c95b754629de661a4d59ba24fd43c11
 PKG_VERSION:=1.0.0.1
 PKG_RELEASE:=$(PKG_REV)
 PKG_BASE_NAME:=$(PKG_NAME)
-PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION).tar.bz2
+PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
 PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/dwpal.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)

@@ -12,7 +12,7 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-dev branch: master_6x
 PKG_NAME:=iwlwav-driver-uci
-PKG_REV:=094f00b94fb91f8fe71ac03876c0e5cff7cb2b4e
+PKG_REV:=89ff0650453ae8638b0d237f2dc6226c269e8147
 PKG_VERSION:=6.1.0
 PKG_RELEASE:=$(PKG_REV)
 
@@ -114,7 +114,7 @@ define KernelPackage/$(PKG_NAME)
     fastpath=1,1,1 \
     ahb_off=1 \
     loggersid=255,255 \
-    dual_pci=1,0
+    dual_pci=1,1
 endef
 
 define KernelPackage/$(PKG_NAME)/description

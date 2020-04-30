@@ -8,7 +8,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 PKG_NAME:=ltq-wlan-wave_6x-uci
 PKG_VERSION:=06.01.00
-PKG_REV:=b957966fb1cfec16e1a3bc9b7675076a159aab75
+PKG_REV:=68001dc09b6b7d4880feede02e1ace173bc6f6fb
 
 
 #package_source
