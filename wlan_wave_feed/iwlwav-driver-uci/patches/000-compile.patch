@@ -1,0 +1,22 @@
+Index: iwlwav-driver-uci-6.1.0/drivers/net/wireless/intel/iwlwav/wireless/driver/core_config.c
+===================================================================
+--- iwlwav-driver-uci-6.1.0.orig/drivers/net/wireless/intel/iwlwav/wireless/driver/core_config.c
++++ iwlwav-driver-uci-6.1.0/drivers/net/wireless/intel/iwlwav/wireless/driver/core_config.c
+@@ -486,7 +486,7 @@ int core_cfg_send_set_chan(mtlk_core_t *
+   BOOL                  enc_frame = FALSE;
+   mtlk_pdb_size_t       data_size = 0;
+   mtlk_vap_handle_t     vap_handle;
+-  mtlk_vap_manager_t    *vap_mgr;
++  mtlk_vap_manager_t    *vap_mgr = NULL;
+   mtlk_core_t           *vap_core;
+   struct intel_vendor_channel_switch_cfg vendor_cs_cfg;
+ 
+@@ -773,7 +773,7 @@ int core_cfg_send_set_chan(mtlk_core_t *
+ 
+ end:
+   for (vap_num = 0; vap_num < max_vaps_count; vap_num++) {
+-    if (mtlk_vap_manager_get_vap_handle(vap_mgr, vap_num, &vap_handle) != MTLK_ERR_OK) {
++    if (vap_mgr || mtlk_vap_manager_get_vap_handle(vap_mgr, vap_num, &vap_handle) != MTLK_ERR_OK) {
+       ILOG3_D("Can't get VAP handle with num %d", vap_num);
+       continue;
+     }

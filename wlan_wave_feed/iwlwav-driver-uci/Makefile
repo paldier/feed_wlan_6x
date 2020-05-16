@@ -12,12 +12,12 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-dev branch: master_6x
 PKG_NAME:=iwlwav-driver-uci
-PKG_REV:=89ff0650453ae8638b0d237f2dc6226c269e8147
+PKG_REV:=b80447a3f72824de64673299e4c89554cf14e531
 PKG_VERSION:=6.1.0
 PKG_RELEASE:=$(PKG_REV)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/iwlwav-dev.git
+PKG_SOURCE_URL:=https://intel.prpl.dev/intel/iwlwav-dev.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
@@ -36,7 +36,6 @@ ifeq ($(CONFIG_TARGET_intel_mips_prx300),y)
 endif
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/package-version-override.mk
 
 define KernelPackage/$(PKG_NAME)
   SUBMENU:=Intel

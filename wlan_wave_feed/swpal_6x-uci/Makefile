@@ -9,12 +9,12 @@ include $(INCLUDE_DIR)/kernel.mk
 
 #### Package Info ############################### 
 PKG_NAME:=swpal_6x-uci
-PKG_REV:=bdb95575fa9b54b1c5ec5646397a15c10681f3ef
+PKG_REV:=29e765c768088cf32714b9c3366fe6ab8ff1445c
 PKG_VERSION:=1.0.0.1
 PKG_RELEASE:=$(PKG_REV)
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION).tar.bz2
-PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/swpal.git
+PKG_SOURCE_URL:=https://intel.prpl.dev/intel/swpal.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
@@ -24,9 +24,6 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_DEFAULT_CUSTOM_SOURCE_DIR:=$(shell pwd)
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/package-version-override.mk
-## don't remove '-' in the next line - this is part of the Makefile syntax ##
--include $(STAGING_DIR)/mk/ugw-loglevel.mk
 
 define Package/$(PKG_NAME)
   SECTION:=utils
@@ -35,7 +32,7 @@ define Package/$(PKG_NAME)
   TITLE:=Intel SWPAL
   URL:=http://www.intel.com
   MAINTAINER:=Intel Corporation
-  DEPENDS:= +libugwhelper +libcal +csd +servd +libuci +safeclibs
+  DEPENDS:= +libuci +safeclibs
   MENU:=1
 endef
 
@@ -67,6 +64,16 @@ endif
   
 TARGET_CFLAGS += -DCONFIG_RPCD
 
+ifeq ($(PKG_IS_KERNEL_MODULE),y)
+PKG_NAME_PREF:=kmod-
+endif
+
+TARGET_CFLAGS += -DPACKAGE_ID=\\\"$(PKG_NAME_PREF)$(PKG_NAME)\\\" -DLOGGING_ID=\"$(subst -,_,$(PKG_NAME_PREF)$(PKG_NAME))\" \
+        $(if $(call qstrip,$(CONFIG_$(PKG_NAME_PREF)$(PKG_NAME)_DEBUG_LEVEL)),\
+                -DLOG_LEVEL=$(CONFIG_$(PKG_NAME_PREF)$(PKG_NAME)_DEBUG_LEVEL),-DLOG_LEVEL=$(CONFIG_FEATURE_UGW_GLOBAL_DEBUG_LEVEL)) \
+        $(if $(call qstrip,$(CONFIG_$(PKG_NAME_PREF)$(PKG_NAME)_DEBUG_TYPE)),\
+                -DLOG_TYPE=$(CONFIG_$(PKG_NAME_PREF)$(PKG_NAME)_DEBUG_TYPE))
+
 # To ipkg / Rootfs
 define Package/$(PKG_NAME)/install
 	$(INSTALL_DIR) $(1)/$(VENDOR_PATH)/usr/lib
@@ -93,12 +100,12 @@ define Package/$(PKG_NAME)/install
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/netifd/sigma-start.sh $(1)/lib/netifd/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/netifd/sigmaManagerDaemon.sh $(1)/lib/netifd/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/netifd/sigma_mbo_daemon.sh $(1)/lib/netifd/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/netifd/utils.sh $(1)/lib/netifd/
+#	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/netifd/utils.sh $(1)/lib/netifd/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/netifd/terminate_radio_after.sh $(1)/lib/netifd/
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/config/uci.sh $(1)/lib/config/
+#	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/config/uci.sh $(1)/lib/config/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/wifi/mac80211.sh $(1)/lib/wifi/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/lib/wifi/platform_dependent_ugw.sh $(1)/lib/wifi/platform_dependent.sh
-	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/sbin/wifi $(1)/sbin/
+#	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/sbin/wifi $(1)/sbin/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/etc/wave/scripts/load_dut.sh $(1)/opt/intel/wave/scripts/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/etc/wave/scripts/flash_file_saver.sh $(1)/opt/intel/wave/scripts/
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/files/scripts/etc/wave/scripts/wave_factory_reset.sh $(1)/opt/intel/wave/scripts/

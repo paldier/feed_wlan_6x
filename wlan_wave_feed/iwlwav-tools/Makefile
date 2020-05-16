@@ -12,30 +12,29 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-tools branch: master_6x
 PKG_NAME:=iwlwav-tools
-PKG_REV:=eed1a4412c1490073c379e2691c740f3c636e7c7
+PKG_REV:=759a6d8b64bb00fb8e09a9558fe6caf5c5416862
 PKG_VERSION:=6.1.0
 PKG_RELEASE:=1
 
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/iwlwav-tools.git
+PKG_SOURCE_URL:=https://intel.prpl.dev/intel/iwlwav-tools.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
  
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_BASE_NAME)-$(PKG_VERSION)
 
-PKG_BUILD_DEPENDS:=libnl3 libnl librt pthread
+PKG_BUILD_DEPENDS:=libnl librt pthread
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/package-version-override.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   TITLE:=wave SW toolset
   URL:=http://www.intel.com/
-  DEPENDS:=+libnl3 +libnl
+  DEPENDS:=+libnl
   MENU:=1
 endef
 

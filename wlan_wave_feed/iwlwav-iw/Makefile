@@ -12,13 +12,13 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-iw branch: master
 PKG_NAME:=iwlwav-iw
-PKG_REV:=8fd9a7b0784bc60e92a660ae3ede6f4154b1844e
+PKG_REV:=0a047668b65441a79ad8ce8c98e15aba5ace3221
 PKG_VERSION:=4.14
 PKG_RELEASE:=$(PKG_REV)
 
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/iwlwav-iw.git
+PKG_SOURCE_URL:=https://intel.prpl.dev/intel/iwlwav-iw.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
@@ -30,17 +30,16 @@ PKG_DEFAULT_CUSTOM_SOURCE_DIR:=$(shell pwd)
 
 SBIN_FOLDER:=usr/sbin
 
-PKG_BUILD_DEPENDS:=libnl3 libnl PACKAGE_iw:iw \
+PKG_BUILD_DEPENDS:=libnl PACKAGE_iw:iw \
 		   PACKAGE_ltq-wlan-wave_6x:ltq-wlan-wave_6x
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/package-version-override.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   TITLE:=iw for Wave
-  DEPENDS:=+libnl3 +libnl
+  DEPENDS:=+libnl
   MENU:=1
 endef
 

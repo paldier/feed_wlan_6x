@@ -12,13 +12,13 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-hostap branch: iwlwav_intel_ip_ax
 PKG_NAME:=iwlwav-hostap-uci
-PKG_REV:=b652afdac2de8628eab6821361d63a8bb149721a
+PKG_REV:=187e02f4ae32d7593b47b9790d959499e2529a44
 PKG_VERSION:=2.8
 PKG_RELEASE:=$(PKG_REV)
 
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-PKG_SOURCE_URL:=ssh://git@gts-chd.intel.com:29418/sw_wave/iwlwav-hostap.git
+PKG_SOURCE_URL:=https://intel.prpl.dev/intel/iwlwav-hostap.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
@@ -32,29 +32,24 @@ PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_BASE_NAME)-$(PKG_VERSION)
 
 PKG_DEFAULT_CUSTOM_SOURCE_DIR:=$(shell pwd)
 
-BIN_FOLDER:=bin
-ifeq ($(CONFIG_NEW_FRAMEWORK),y)
- BIN_FOLDER:=/usr/sbin
-endif
-
+BIN_FOLDER:=/usr/sbin
 
 PKG_BUILD_DIR_HAPD:=$(PKG_BUILD_DIR)/hostapd
 PKG_BUILD_DIR_WPAS:=$(PKG_BUILD_DIR)/wpa_supplicant
 
-PKG_BUILD_DEPENDS:=libopenssl libnl3 librt libnl \
+PKG_BUILD_DEPENDS:=libopenssl libnl librt libnl \
 		   PACKAGE_ltq-wlan-wave_6x:ltq-wlan-wave_6x
 
 PKG_CONFIG_DEPENDS:=\
 	CONFIG_WIRELESS_STA
 
 include $(INCLUDE_DIR)/package.mk
-include $(INCLUDE_DIR)/package-version-override.mk
 
 define Package/$(PKG_NAME)
   SECTION:=net
   CATEGORY:=Network
   TITLE:=hostapd for Wave
-  DEPENDS:=+libopenssl +libnl3 +librt +libnl
+  DEPENDS:=+libopenssl +librt +libnl
   MENU:=1
 endef
 

@@ -1,0 +1,44 @@
+Index: iwlwav-hostap-uci-2.8/src/ap/rrm.c
+===================================================================
+--- iwlwav-hostap-uci-2.8.orig/src/ap/rrm.c
++++ iwlwav-hostap-uci-2.8/src/ap/rrm.c
+@@ -513,7 +513,7 @@ static void hostapd_handle_channel_load_
+ 	u8 op_class, channel, channel_load, measurement_rep_mode;
+ 	u16 measurement_duration;
+ 	u64 start_time;
+-	char wide_band_ch_switch[30];
++	char wide_band_ch_switch[64];
+ 
+ 	wpa_printf(MSG_DEBUG, "channel load token %u len %zu",	token, len);
+ 
+@@ -642,7 +642,7 @@ static void hostapd_handle_noise_histogr
+ 	u64 start_time;
+ 	char ipi_density[64] = {};
+ 	char *cur, *end;
+-	char wide_band_ch_switch[30];
++	char wide_band_ch_switch[64];
+ 	int ret;
+ 
+ 	wpa_printf(MSG_DEBUG, "noise histogram token %u len %zu", token, len);
+Index: iwlwav-hostap-uci-2.8/hostapd/ctrl_iface.c
+===================================================================
+--- iwlwav-hostap-uci-2.8.orig/hostapd/ctrl_iface.c
++++ iwlwav-hostap-uci-2.8/hostapd/ctrl_iface.c
+@@ -6127,7 +6127,7 @@ int hostapd_ctrl_iface_sta_steer(struct
+ 
+ 	os_memset(bssid, 0, sizeof(bssid));
+ 	pos = os_strchr(cmd, ' ');
+-	if (pos && (pos + 1) != '\0') {
++	if (pos && (*(pos + 1)) != '\0') {
+ 		pos++;
+ 		if (hwaddr_aton(pos, bssid)) {
+ 			btm_parameters = pos;
+@@ -6236,7 +6236,7 @@ int hostapd_ctrl_iface_sta_allow(struct
+ 	if (strlen(cmd) > 0) {
+ 		pos = cmd;
+ 		/* count the number of stations and verify the validity */
+-		while (pos && pos != '\0') {
++		while (pos && *pos != '\0') {
+ 			if (hwaddr_aton(pos, sta_addr))
+ 				return -1;
+ 			count++;
