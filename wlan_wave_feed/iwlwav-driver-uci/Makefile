@@ -12,7 +12,7 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-dev branch: master_6x
 PKG_NAME:=iwlwav-driver-uci
-PKG_REV:=6c584785e46ef3a8bced1de475a0a852b5776f08
+PKG_REV:=3bc709878a2442ced01380d9dcdf53e6d19ad292
 PKG_VERSION:=6.1.0
 PKG_RELEASE:=$(PKG_REV)
 
