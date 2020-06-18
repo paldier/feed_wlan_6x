@@ -12,12 +12,12 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-dev branch: master_6x
 PKG_NAME:=iwlwav-driver-uci
-PKG_REV:=cbd2d8c4df2e338fd240c6873702a6f0c748dfb3
+PKG_REV:=66bfe5a6fe15f217c1fe57394a6a80f7f182e0bb
 PKG_VERSION:=6.1.0
 PKG_RELEASE:=$(PKG_REV)
 
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-PKG_SOURCE_URL:=https://intel.prpl.dev/prplmesh/iwlwav-dev.git
+PKG_SOURCE_URL:=https://intel.prpl.dev/intel/iwlwav-dev.git
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git
