@@ -12,7 +12,7 @@ include $(INCLUDE_DIR)/kernel.mk
 #### Package Info ###############################
 # iwlwav-hostap branch: iwlwav_intel_ip_ax
 PKG_NAME:=iwlwav-hostap-uci
-PKG_REV:=abc0e2b4c4f026ca1e17d77ecc569cd214a0622b
+PKG_REV:=9c008343249632c831830abede74c91867f84714
 PKG_VERSION:=2.8
 PKG_RELEASE:=$(PKG_REV)
 
