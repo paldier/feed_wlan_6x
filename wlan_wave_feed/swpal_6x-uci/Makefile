@@ -9,7 +9,7 @@ include $(INCLUDE_DIR)/kernel.mk
 
 #### Package Info ############################### 
 PKG_NAME:=swpal_6x-uci
-PKG_REV:=29e765c768088cf32714b9c3366fe6ab8ff1445c
+PKG_REV:=949ada35b6acb0ec629ad7251fb568b118f58a44
 PKG_VERSION:=1.0.0.1
 PKG_RELEASE:=$(PKG_REV)
 PKG_BASE_NAME:=$(PKG_NAME)
