@@ -29,7 +29,7 @@ endef
 
 define Package/iwlwav-base-files/install
 	$(INSTALL_DIR) $(1)/mnt
-	$(INSTALL_DIR) $(1)/usr/sbin
+	$(INSTALL_DIR) $(1)/etc/uci-defaults
 	$(LN) /tmp/mounts $(1)/mnt/usb
 	$(CP) ./files/* $(1)/
 endef
