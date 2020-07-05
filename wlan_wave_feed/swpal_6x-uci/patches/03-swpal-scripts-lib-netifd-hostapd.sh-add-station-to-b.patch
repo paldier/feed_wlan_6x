@@ -1,0 +1,32 @@
+From 4c5987b26cdf9d7c8b814b78bf5423c63f798ca1 Mon Sep 17 00:00:00 2001
+From: Tomer Eliyahu <tomer.b.eliyahu@intel.com>
+Date: Sun, 5 Jul 2020 13:13:23 +0000
+Subject: [PATCH] swpal:scripts:lib:netifd hostapd.sh add station to br-lan
+
+The supplicant configuration supports automatically adding interfaces to
+the bridge, but this is not working since $network_bridge is not read
+from uci. So for now, hard-code it to br-lan always.
+
+Signed-off-by: Tomer Eliyahu <tomer.b.eliyahu@intel.com>
+---
+ files/scripts/lib/netifd/hostapd.sh | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/files/scripts/lib/netifd/hostapd.sh b/files/scripts/lib/netifd/hostapd.sh
+index 0dfac44..d79fbba 100644
+--- a/files/scripts/lib/netifd/hostapd.sh
++++ b/files/scripts/lib/netifd/hostapd.sh
+@@ -1223,6 +1223,10 @@ EOF
+ wpa_supplicant_run() {
+ 	local ifname="$1"; shift
+ 
++	# HACK HACK HACK
++	# TODO - get network_bridge from UCI
++	[ -n "$network_bridge" ] || network_bridge='br-lan'
++
+ 	_wpa_supplicant_common "$ifname"
+ 
+ 	/usr/sbin/wpa_supplicant -B \
+-- 
+2.17.1
+
