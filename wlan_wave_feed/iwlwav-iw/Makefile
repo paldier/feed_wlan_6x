@@ -18,7 +18,7 @@ PKG_RELEASE:=$(PKG_REV)
 
 PKG_BASE_NAME:=$(PKG_NAME)
 PKG_SOURCE:=$(PKG_BASE_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.bz2
-PKG_SOURCE_URL:=https://intel.prpl.dev/intel/iwlwav-iw.git
+PKG_SOURCE_URL:=https://github.com/paldier/iwlwav-iw.git
 PKG_SOURCE_SUBDIR:=$(PKG_BASE_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
 PKG_SOURCE_PROTO:=git

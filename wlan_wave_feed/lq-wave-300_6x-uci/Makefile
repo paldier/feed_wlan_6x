@@ -14,7 +14,7 @@ PKG_REV:=2513b05633fd57487e83a774419a8e906708bf39
 #package_source
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)-$(PKG_VERSION)
 PKG_SOURCE_VERSION:=$(PKG_REV)
-PKG_SOURCE_URL:=https://intel.prpl.dev/intel/wave_bin.git
+PKG_SOURCE_URL:=https://github.com/paldier//wave_bin.git
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE:=$(PKG_NAME)-$(PKG_VERSION)-$(PKG_REV).tar.gz
 PKG_SOURCE_SUBDIR:=$(PKG_NAME)-$(PKG_VERSION)
